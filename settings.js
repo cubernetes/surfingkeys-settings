@@ -18,15 +18,26 @@ api.addSearchAlias(
 	resp => JSON.parse(resp.text)[1]
 );
 
-api.removeSearchAlias('w')
-
+//'https://en.wiktionary.ORG/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=',
+//resp => Object.values(JSON.parse(resp.teXT).query.pages).map(e => e.title),
 api.addSearchAlias(
-	'w',
+	'we',
 	'wiktionary',
 	'https://en.wiktionary.org/wiki/',
 	's',
-	'https://en.wiktionary.org/w/api.php?action=query&format=json&generator=prefixsearch&gpssearch=',
-	resp => Object.values(JSON.parse(resp.text).query.pages).map(e => e.title),
+	'https://en.wiktionary.org/w/rest.php/v1/search/title?limit=10&q=',
+	resp => JSON.parse(resp.text).pages.map(e => e.title),
+	'o',
+	options={favicon_url: 'https://de.wiktionary.org/static/favicon/piece.ico'}
+);
+
+api.addSearchAlias(
+	'wd',
+	'wiktionary',
+	'https://de.wiktionary.org/wiki/',
+	's',
+	'https://de.wiktionary.org/w/rest.php/v1/search/title?limit=10&q=',
+	resp => JSON.parse(resp.text).pages.map(e => e.title),
 	'o',
 	options={favicon_url: 'https://de.wiktionary.org/static/favicon/piece.ico'}
 );
